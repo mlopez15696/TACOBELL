@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ContactoCreateDlg" widgetVar="ContactoCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateContactoTitle}">
+            <h:form id="ContactoCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{contactoController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateContactoLabel_codigopersona}" for="codigopersona" />
+                        <p:inputText id="codigopersona" value="#{contactoController.selected.codigopersona}" title="#{bundle.CreateContactoTitle_codigopersona}" required="true" requiredMessage="#{bundle.CreateContactoRequiredMessage_codigopersona}"/>
+                        <p:outputLabel value="#{bundle.CreateContactoLabel_nombre}" for="nombre" />
+                        <p:inputText id="nombre" value="#{contactoController.selected.nombre}" title="#{bundle.CreateContactoTitle_nombre}" required="true" requiredMessage="#{bundle.CreateContactoRequiredMessage_nombre}"/>
+                        <p:outputLabel value="#{bundle.CreateContactoLabel_apellido}" for="apellido" />
+                        <p:inputText id="apellido" value="#{contactoController.selected.apellido}" title="#{bundle.CreateContactoTitle_apellido}" required="true" requiredMessage="#{bundle.CreateContactoRequiredMessage_apellido}"/>
+                        <p:outputLabel value="#{bundle.CreateContactoLabel_numerotelefono}" for="numerotelefono" />
+                        <p:inputText id="numerotelefono" value="#{contactoController.selected.numerotelefono}" title="#{bundle.CreateContactoTitle_numerotelefono}" required="true" requiredMessage="#{bundle.CreateContactoRequiredMessage_numerotelefono}"/>
+                        <p:outputLabel value="#{bundle.CreateContactoLabel_organizacion}" for="organizacion" />
+                        <p:inputText id="organizacion" value="#{contactoController.selected.organizacion}" title="#{bundle.CreateContactoTitle_organizacion}" required="true" requiredMessage="#{bundle.CreateContactoRequiredMessage_organizacion}"/>
+                        <p:outputLabel value="#{bundle.CreateContactoLabel_ubicacionCodigoarea}" for="ubicacionCodigoarea" />
+                        <p:selectOneMenu id="ubicacionCodigoarea" value="#{contactoController.selected.ubicacionCodigoarea}" required="true" requiredMessage="#{bundle.EditContactoRequiredMessage_ubicacionCodigoarea}">
+                            <f:selectItems value="#{ubicacionController.itemsAvailableSelectOne}"
+                                           var="ubicacionCodigoareaItem"
+                                           itemValue="#{ubicacionCodigoareaItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{contactoController.create}" value="#{bundle.Save}" update="display,:ContactoListForm:datalist,:growl" oncomplete="handleSubmit(args,'ContactoCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="ContactoCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

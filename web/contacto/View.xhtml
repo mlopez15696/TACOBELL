@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ContactoViewDlg" widgetVar="ContactoViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewContactoTitle}">
+            <h:form id="ContactoViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{contactoController.selected != null}">
+                        <h:outputText value="#{bundle.ViewContactoLabel_codigopersona}"/>
+                        <h:outputText value="#{contactoController.selected.codigopersona}" title="#{bundle.ViewContactoTitle_codigopersona}"/>
+                        <h:outputText value="#{bundle.ViewContactoLabel_nombre}"/>
+                        <h:outputText value="#{contactoController.selected.nombre}" title="#{bundle.ViewContactoTitle_nombre}"/>
+                        <h:outputText value="#{bundle.ViewContactoLabel_apellido}"/>
+                        <h:outputText value="#{contactoController.selected.apellido}" title="#{bundle.ViewContactoTitle_apellido}"/>
+                        <h:outputText value="#{bundle.ViewContactoLabel_numerotelefono}"/>
+                        <h:outputText value="#{contactoController.selected.numerotelefono}" title="#{bundle.ViewContactoTitle_numerotelefono}"/>
+                        <h:outputText value="#{bundle.ViewContactoLabel_organizacion}"/>
+                        <h:outputText value="#{contactoController.selected.organizacion}" title="#{bundle.ViewContactoTitle_organizacion}"/>
+                        <h:outputText value="#{bundle.ViewContactoLabel_ubicacionCodigoarea}"/>
+                        <h:outputText value="#{contactoController.selected.ubicacionCodigoarea}" title="#{bundle.ViewContactoTitle_ubicacionCodigoarea}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="ContactoViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
